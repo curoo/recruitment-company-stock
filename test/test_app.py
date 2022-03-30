@@ -1,5 +1,5 @@
 import json
-from app import app
+from website.app import app
 
 app.testing = True
 app = app.test_client()

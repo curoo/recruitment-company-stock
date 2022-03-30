@@ -1,7 +1,7 @@
 module.exports = {
     mode: "development",
 
-    entry: ["./js/index.js"],
+    entry: ["./website/js/index.js"],
 
     output: {
         path: __dirname + "/static",
