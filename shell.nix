@@ -9,7 +9,6 @@ pkgs.mkShell rec {
   ];
 
   VENV_PATH = builtins.toString ./.venv;
-  FLASK_ENV = "development";
 
   shellHook = ''
     [ -d "${VENV_PATH}" ] || python -m venv ${VENV_PATH}
