@@ -1,0 +1,99 @@
+[
+  {
+    "tickerCode": "GOOG",
+    "latestPrice": 54407,
+    "priceUnits": "GBP:pence",
+    "asOf": "2015-05-06T15:05:59.912Z",
+    "storyFeed": [
+      {
+        "id": 74,
+        "headline": "Google going strong, but maybe not for long.",
+        "body": "Google has some concerns to address the balance of this year, and beyond. Over the long run, the consensus analyst recommendation for Google as a 'strong buy' is warranted as the company continues driving a healthy double-digit top line growth. But that doesn't mean there won't be a hurdle, or three, to overcome along the way."
+      },
+      {
+        "id": 141,
+        "headline": "Ad revenues still primary source of Google revenue.",
+        "body": "Investors were encouraged by a healthy gain in the number of people looking at Google's ads, even as the average prices for those marketing messages extended a three-and-half year slump. The market also had been bracing for more disappointing numbers, triggering a 'relief rally' when the results weren't as bad as feared, BGC Partners analyst Colin Gillis said."
+      }
+    ]
+  },
+  {
+    "tickerCode": "MSFT",
+    "latestPrice": 4887,
+    "priceUnits": "GBP:pence",
+    "asOf": "2022-03-30T15:29:34.973Z",
+    "storyFeed": [
+      {
+        "id": 22,
+        "headline": "Cloud gives Microsoft significant boost",
+        "body": "Microsoft’s share price has made significant gains over the past month, as the company has shared more details about its cloud business. Fiscal third-quarter results showed its success in its commercial cloud business was generating about $6.3 billion a year in revenue. At a developers’ conference last week, Microsoft also disclosed plans to grow that business to about $20 billion in revenue by 2018."
+      },
+      {
+        "id": 23,
+        "headline": "Microsoft buys stylus company N-Trig",
+        "body": "Microsoft has bought the stylus and display interface technology for the Surface Pro 3 from the company that made it. Microsoft on Friday confirmed it bought the technology from Israel-based N-Trig. According to positive media reports, Microsoft bought the technology for $30 million to grow its foray into mobile computing."
+      }
+    ]
+  },
+  {
+    "tickerCode": "NFLX",
+    "latestPrice": 202214,
+    "priceUnits": "GBP:pence",
+    "asOf": "2022-03-30T15:29:34.973Z",
+    "storyFeed": []
+  },
+  {
+    "tickerCode": "TEAM",
+    "latestPrice": 5678,
+    "priceUnits": "GBP:pence",
+    "asOf": "2022-03-30T15:29:34.973Z",
+    "storyFeed": [
+      {
+        "id": 52,
+        "headline": "Atlassian sees 20% growth in SME market",
+        "body": "Off the back of recent successful innovations, we finally see the market accept the progress being made."
+      },
+      {
+        "id": 203,
+        "headline": "Disappointment for Corporate Users of Atlassian",
+        "body": "Large corporate users have not seen the same level of innovation as the counterparts in the SME market."
+      }
+    ]
+  },
+  {
+    "tickerCode": "TEAM",
+    "latestPrice": 5678,
+    "priceUnits": "GBP:pence",
+    "asOf": "2022-03-30T15:29:34.973Z",
+    "storyFeed": [
+      {
+        "id": 52,
+        "headline": "Atlassian sees 20% growth in SME market",
+        "body": "Off the back of recent successful innovations, we finally see the market accept the progress being made."
+      },
+      {
+        "id": 203,
+        "headline": "Disappointment for Corporate Users of Atlassian",
+        "body": "Large corporate users have not seen the same level of innovation as the counterparts in the SME market."
+      }
+    ]
+  },
+  {
+    "tickerCode": "DELL",
+    "latestPrice": 902,
+    "priceUnits": "GBP:pence",
+    "asOf": "2022-03-30T15:29:34.973Z",
+    "storyFeed": [
+      {
+        "id": 152,
+        "headline": "Dell is Stuck",
+        "body": "What we are seeing is a decline in sales in their server category."
+      },
+      {
+        "id": 62,
+        "headline": "Dell into the Future",
+        "body": "There's a strong feeling that the business is overall quite healthy bug with the decline in the server market and disappointing returns, it's difficult to see a year without a slump."
+      }
+    ]
+  }
+]
