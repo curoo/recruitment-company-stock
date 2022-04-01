@@ -90,4 +90,5 @@ Calculate each story's sentiment analysis and display it next to the story headl
 
 - Ask any questions
 - `git clone https://github.com/curoo/recruitment-company-stock`
+- Feel free to use Google or any other resource
 - Start pairing!
