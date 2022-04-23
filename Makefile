@@ -13,6 +13,9 @@ run:
 	source "$(VENV_PATH)/bin/activate"
 	flask run
 
+db:
+	docker-compose up
+
 test:
 	pytest test
 

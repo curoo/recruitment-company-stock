@@ -4,8 +4,11 @@ pkgs.mkShell rec {
   name = "dev";
 
   buildInputs = [
-    pkgs.python3
     pkgs.nodejs
+    pkgs.python39
+    pkgs.python39Packages.wheel
+    pkgs.openssl
+    pkgs.postgresql
   ];
 
   VENV_PATH = builtins.toString ./.venv;
