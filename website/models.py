@@ -3,9 +3,10 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class Company(Base):
-    __tablename__ = 'companies'
+    __tablename__ = "companies"
 
     id = Column(Integer, primary_key=True)
-    ticker_code = Column(String)
+    tickercode = Column(String)
     name = Column(String)

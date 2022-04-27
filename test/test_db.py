@@ -8,7 +8,7 @@ from website.db import get_company_list
 
 
 def test_get_company_list(db_session):
-    company = Company(name="Google", ticker_code="GOOG")
+    company = Company(name="Google", tickercode="GOOG")
     db_session.add(company)
     db_session.commit()
 
@@ -17,7 +17,7 @@ def test_get_company_list(db_session):
     saved_company = companies[0]
 
     assert type(saved_company) == Company
-    assert saved_company.ticker_code == company.ticker_code
+    assert saved_company.tickercode == company.tickercode
     assert saved_company.name == company.name
 
 
