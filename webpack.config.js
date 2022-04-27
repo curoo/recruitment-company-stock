@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
     mode: "development",
 
@@ -7,6 +9,12 @@ module.exports = {
         path: __dirname + "/static",
         filename: "bundle.js",
     },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            "process.env.API_URL": JSON.stringify("http://127.0.0.1:5000"),
+        }),
+    ],
 
     module: {
         rules: [

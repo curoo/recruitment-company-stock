@@ -9,9 +9,8 @@ bootstrap:
 	npm install
 
 run:
-	npm run build
-	source "$(VENV_PATH)/bin/activate"
-	flask run
+	source "$(PWD)/.env" && npm run watch &
+	source "$(VENV_PATH)/bin/activate" && flask run
 
 db:
 	docker-compose up
