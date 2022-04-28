@@ -1,24 +1,33 @@
-SHELL := /bin/bash
-VENV_PATH := $(PWD)/.venv
+include .env
+export
 
-bootstrap:
-	[ -x "$(shell command -v python3)" ] || { echo "python is not installed"; exit 1; }
-	[ -x "$(shell command -v npm)" ] || { echo "node is not installed"; exit 1; }
-	python3 -m venv $(VENV_PATH)
-	pip install -r requirements.txt
+
+bootstrap: system-check venv node_modules
+
+system-check:
+	./system-check.sh &>/dev/null
+
+venv: requirements.txt
+	test -d venv || python3 -m venv venv
+	venv/bin/pip3 install -Ur requirements.txt
+	touch venv
+
+node_modules: package.json
 	npm install
+	touch node_modules
 
 run:
-	source "$(PWD)/.env" && npm run watch &
-	source "$(VENV_PATH)/bin/activate" && flask run
+	npm run watch &
+	venv/bin/flask run
 
 db:
 	docker-compose up
 
 test:
-	pytest test
+	venv/bin/pytest test
 
 clean:
 	git clean -fdx
+	docker-compose down -v
 
-.PHONY: bootstrap run test clean
+.PHONY: bootstrap run db test clean

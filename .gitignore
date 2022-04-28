@@ -1,5 +1,5 @@
 .vscode/
 node_modules/
-.venv/
+venv/
 __pycache__/
 static/bundle.js

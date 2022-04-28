@@ -11,7 +11,7 @@ pkgs.mkShell rec {
     pkgs.postgresql
   ];
 
-  VENV_PATH = builtins.toString ./.venv;
+  VENV_PATH = builtins.toString ./venv;
 
   shellHook = ''
     [ -d "${VENV_PATH}" ] || python -m venv ${VENV_PATH}
