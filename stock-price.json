@@ -61,24 +61,6 @@
     ]
   },
   {
-    "tickerCode": "TEAM",
-    "latestPrice": 5678,
-    "priceUnits": "GBP:pence",
-    "asOf": "2022-03-30T15:29:34.973Z",
-    "storyFeed": [
-      {
-        "id": 52,
-        "headline": "Atlassian sees 20% growth in SME market",
-        "body": "Off the back of recent successful innovations, we finally see the market accept the progress being made."
-      },
-      {
-        "id": 203,
-        "headline": "Disappointment for Corporate Users of Atlassian",
-        "body": "Large corporate users have not seen the same level of innovation as the counterparts in the SME market."
-      }
-    ]
-  },
-  {
     "tickerCode": "DELL",
     "latestPrice": 902,
     "priceUnits": "GBP:pence",
