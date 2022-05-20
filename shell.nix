@@ -11,15 +11,17 @@ pkgs.mkShell rec {
     pkgs.postgresql
   ];
 
-  VENV_PATH = builtins.toString ./venv;
+  VIRTUAL_ENV = builtins.toString ./venv;
 
   shellHook = ''
-    [ -d "${VENV_PATH}" ] || python -m venv ${VENV_PATH}
-    source ${VENV_PATH}/bin/activate
-    pip install -r requirements.txt
+    [ -d "${VIRTUAL_ENV}" ] || {
+      python -m venv ${VIRTUAL_ENV}
+      source ${VIRTUAL_ENV}/bin/activate
+      pip install -r requirements.txt
+    }
   '';
 
   postShellHook = ''
-    source ${VENV_PATH}/bin/activate
+    source ${VIRTUAL_ENV}/bin/activate
   '';
 }

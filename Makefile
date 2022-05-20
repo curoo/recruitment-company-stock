@@ -1,15 +1,17 @@
+VIRTUAL_ENV = $(PWD)/venv
+PIP = $(VIRTUAL_ENV)/bin/pip3
+
 include .env
 export
 
-
-bootstrap: system-check venv node_modules
+bootstrap: system-check $(VIRTUAL_ENV) node_modules
 
 system-check:
 	./system-check.sh &>/dev/null
 
-venv: requirements.txt
-	test -d venv || python3 -m venv venv
-	venv/bin/pip3 install -Ur requirements.txt
+$(VIRTUAL_ENV): requirements.txt
+	test -d $(VIRTUAL_ENV) || python3 -m venv venv
+	$(PIP) install -Ur requirements.txt
 	touch venv
 
 node_modules: package.json
@@ -18,7 +20,7 @@ node_modules: package.json
 
 run:
 	npm run watch &
-	venv/bin/flask run
+	venv/bin/flask run --host 0.0.0.0
 
 db:
 	docker-compose up
