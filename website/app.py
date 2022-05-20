@@ -3,7 +3,11 @@ from flask import Flask, jsonify, render_template
 from website.db import get_company_list, get_session
 
 
-app = Flask(__name__, static_folder="../static", template_folder="../templates")
+app = Flask(
+    __name__,
+    static_folder="../static",
+    template_folder="../templates"
+)
 
 
 @app.route("/")
@@ -13,7 +17,6 @@ def index():
 
 @app.route("/api/companies")
 def data():
-    print("Fetching company data...")
     session = get_session()
     companies = get_company_list(session)
 

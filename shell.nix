@@ -13,6 +13,9 @@ pkgs.mkShell rec {
 
   VIRTUAL_ENV = builtins.toString ./venv;
 
+  # https://stackoverflow.com/a/70238851/644945
+  DOCKER_DEFAULT_PLATFORM = "linux/amd64";
+
   shellHook = ''
     [ -d "${VIRTUAL_ENV}" ] || {
       python -m venv ${VIRTUAL_ENV}

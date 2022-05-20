@@ -1,6 +1,8 @@
 version: "3.7"
+
 services:
-  company_db:
+
+  database:
     image: postgres:14.2-alpine
     restart: always
     environment:
@@ -10,3 +12,12 @@ services:
       - ./company_database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - 5432:5432
+
+  website:
+    build: ./
+    env_file: .env
+    stop_grace_period: 1s
+    ports:
+      - '5000:5000'
+    volumes:
+      - './:/src'
