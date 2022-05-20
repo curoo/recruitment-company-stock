@@ -42,8 +42,7 @@ The stock price is available as a JSON document at:
 
 `https://dev.expend.io/company/{company_ticker_code}`
 
-For example, a call to `https://dev.expend.io/company/GOOG`
-might return
+For example, a call to `https://dev.expend.io/company/GOOG` might return;
 
 ```json
 {
@@ -89,6 +88,5 @@ Calculate each story's sentiment analysis and display it next to the story headl
 # What Now?
 
 - Ask any questions
-- `git clone https://github.com/curoo/recruitment-company-stock`
 - Feel free to use Google or any other resource
 - Start pairing!
