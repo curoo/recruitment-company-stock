@@ -10,7 +10,7 @@ engine = create_engine(
         user=os.environ.get("POSTGRES_USER"),
         password=os.environ.get("POSTGRES_PASSWORD"),
         hostname=os.environ.get("POSTGRES_HOSTNAME"),
-        database_name=os.environ.get("POSTGRES_DATABASE_NAME"),
+        database_name=os.environ.get("POSTGRES_DB"),
     )
 )
 

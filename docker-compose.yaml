@@ -5,9 +5,7 @@ services:
   database:
     image: postgres:14.2-alpine
     restart: always
-    environment:
-      POSTGRES_PASSWORD: "Pas5w0rD"
-      POSTGRES_DB: "company"
+    env_file: .env
     volumes:
       - ./company_database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
