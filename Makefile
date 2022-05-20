@@ -27,6 +27,7 @@ run: node_modules
 	npm run watch &
 	docker-compose up
 
+test: POSTGRES_HOSTNAME := localhost
 test:
 	$(VENV)/bin/pytest test
 

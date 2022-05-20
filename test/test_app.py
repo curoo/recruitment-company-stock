@@ -14,7 +14,7 @@ def test_index_response():
 
 
 @pytest.mark.skipif(db_not_available, reason="Database not available")
-def test_api_data(requests_mock):
+def test_api_data():
     data = app.get("/api/companies").get_data(as_text=True)
 
     a_company = json.loads(data)[0]
