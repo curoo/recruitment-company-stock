@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
     mode: "development",
 
-    entry: ["./website/js/index.js"],
+    entry: ["./frontend/index.js"],
 
     output: {
         path: __dirname + "/static",

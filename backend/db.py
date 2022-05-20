@@ -3,7 +3,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from website.models import Company
+from backend.models import Company
 
 engine = create_engine(
     "postgresql+psycopg2://{user}:{password}@{hostname}/{database_name}".format(

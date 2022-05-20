@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template
 
-from website.db import get_company_list, get_session
+from backend.db import get_company_list, get_session
 
 
 app = Flask(

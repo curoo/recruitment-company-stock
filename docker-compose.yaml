@@ -7,7 +7,7 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - ./company_database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - 5432:5432
 
