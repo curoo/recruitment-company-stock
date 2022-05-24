@@ -1,7 +1,7 @@
 import pytest
 import json
 
-from website.app import app
+from backend.app import app
 from test.testhelpers import db_not_available
 
 app.testing = True

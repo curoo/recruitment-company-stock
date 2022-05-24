@@ -11,7 +11,7 @@ pkgs.mkShell rec {
     pkgs.postgresql
   ];
 
-  VIRTUAL_ENV = builtins.toString ./venv;
+  VIRTUAL_ENV = builtins.toString ./.venv;
 
   # https://stackoverflow.com/a/70238851/644945
   DOCKER_DEFAULT_PLATFORM = "linux/amd64";

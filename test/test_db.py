@@ -3,8 +3,8 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from website.models import Base, Company
-from website.db import get_company_list
+from backend.models import Base, Company
+from backend.db import get_company_list
 
 
 def test_get_company_list(db_session):

@@ -1,6 +1,6 @@
 # Note: This is mostly used as a task runner, not as a C++ compiler.
 
-VENV = $(PWD)/venv
+VENV = $(PWD)/.venv
 VIRTUAL_ENV = $(VENV)
 
 include .env
@@ -12,9 +12,9 @@ system-check:
 	./system-check.sh &>/dev/null
 
 $(VENV): requirements.txt
-	test -d $(VENV) || python3 -m venv venv
+	test -d $(VENV) || python3 -m venv $(VENV)
 	$(VENV)/bin/pip3 install -Ur requirements.txt
-	touch venv
+	touch $(VENV)
 
 node_modules: package.json
 	npm install
