@@ -5,6 +5,7 @@
     "packages/api"
   ],
   "scripts": {
-    "test": "npm run test --workspaces --if-present"
+    "start": "npm run --workspaces --if-present start",
+    "test": "npm run --workspaces --if-present test"
   }
 }

@@ -6,7 +6,7 @@ import { OpenApiMeta } from "trpc-openapi";
 import { v4 as uuid } from "uuid";
 import { z } from "zod";
 
-import { Post, User, database } from "./database";
+import { User, Company, database } from "./database";
 
 const jwtSecret = uuid();
 
@@ -140,254 +140,70 @@ const authRouter = createRouter()
     },
   });
 
-const usersRouter = createRouter()
-  .query("getUsers", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "GET",
-        path: "/users",
-        tags: ["users"],
-        summary: "Read all users",
-      },
+const companyRouter = createRouter().query("getCompanies", {
+  meta: {
+    openapi: {
+      enabled: true,
+      method: "GET",
+      path: "/companies",
+      tags: ["companies"],
+      summary: "Read all companies",
     },
-    input: z.void(),
-    output: z.object({
-      users: z.array(
-        z.object({
-          id: z.string().uuid(),
-          email: z.string().email(),
-          name: z.string(),
-        })
-      ),
-    }),
-    resolve: () => {
-      const users = database.users.map((user) => ({
-        id: user.id,
-        email: user.email,
-        name: user.name,
-      }));
-
-      return { users };
-    },
-  })
-  .query("getUserById", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "GET",
-        path: "/users/{id}",
-        tags: ["users"],
-        summary: "Read a user by id",
-      },
-    },
-    input: z.object({
-      id: z.string().uuid(),
-    }),
-    output: z.object({
-      user: z.object({
-        id: z.string().uuid(),
-        email: z.string().email(),
+  },
+  input: z.object({}),
+  output: z.object({
+    companies: z.array(
+      z.object({
+        id: z.number(),
+        tickerCode: z.string(),
         name: z.string(),
-      }),
+      })
+    ),
+  }),
+  resolve: () => {
+    return { companies: database.companies };
+  },
+});
+
+const companyProtectedRouter = createProtectedRouter().mutation("createCompany", {
+  meta: {
+    openapi: {
+      enabled: true,
+      method: "POST",
+      path: "/companies",
+      tags: ["companies"],
+      protect: true,
+      summary: "Create a new company",
+    },
+  },
+  input: z.object({
+    tickerCode: z.string().min(1).max(10),
+    name: z.string().min(1).max(50),
+  }),
+  output: z.object({
+    company: z.object({
+      id: z.number(),
+      tickerCode: z.string(),
+      name: z.string(),
     }),
-    resolve: ({ input }) => {
-      const user = database.users.find((_user) => _user.id === input.id);
+  }),
+  resolve: ({ input, ctx }) => {
+    const company: Company = {
+      id: database.companies.length + 1,
+      tickerCode: input.tickerCode,
+      name: input.name,
+    };
 
-      if (!user) {
-        throw new TRPCError({
-          message: "User not found",
-          code: "NOT_FOUND",
-        });
-      }
+    database.companies.push(company);
 
-      return { user };
-    },
-  });
+    return { company };
+  },
+});
 
-const postsRouter = createRouter()
-  .query("getPosts", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "GET",
-        path: "/posts",
-        tags: ["posts"],
-        summary: "Read all posts",
-      },
-    },
-    input: z.object({
-      userId: z.string().uuid().optional(),
-    }),
-    output: z.object({
-      posts: z.array(
-        z.object({
-          id: z.string().uuid(),
-          content: z.string(),
-          userId: z.string().uuid(),
-        })
-      ),
-    }),
-    resolve: ({ input }) => {
-      let posts: Post[] = database.posts;
-
-      if (input.userId) {
-        posts = posts.filter((post) => {
-          return post.userId === input.userId;
-        });
-      }
-
-      return { posts };
-    },
-  })
-  .query("getPostById", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "GET",
-        path: "/posts/{id}",
-        tags: ["posts"],
-        summary: "Read a post by id",
-      },
-    },
-    input: z.object({
-      id: z.string().uuid(),
-    }),
-    output: z.object({
-      post: z.object({
-        id: z.string().uuid(),
-        content: z.string(),
-        userId: z.string().uuid(),
-      }),
-    }),
-    resolve: ({ input }) => {
-      const post = database.posts.find((_post) => _post.id === input.id);
-
-      if (!post) {
-        throw new TRPCError({
-          message: "Post not found",
-          code: "NOT_FOUND",
-        });
-      }
-
-      return { post };
-    },
-  });
-
-const postsProtectedRouter = createProtectedRouter()
-  .mutation("createPost", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "POST",
-        path: "/posts",
-        tags: ["posts"],
-        protect: true,
-        summary: "Create a new post",
-      },
-    },
-    input: z.object({
-      content: z.string().min(1).max(140),
-    }),
-    output: z.object({
-      post: z.object({
-        id: z.string().uuid(),
-        content: z.string(),
-        userId: z.string().uuid(),
-      }),
-    }),
-    resolve: ({ input, ctx }) => {
-      const post: Post = {
-        id: uuid(),
-        content: input.content,
-        userId: ctx.user.id,
-      };
-
-      database.posts.push(post);
-
-      return { post };
-    },
-  })
-  .mutation("updatePostById", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "PUT",
-        path: "/posts/{id}",
-        tags: ["posts"],
-        protect: true,
-        summary: "Update an existing post",
-      },
-    },
-    input: z.object({
-      id: z.string().uuid(),
-      content: z.string().min(1),
-    }),
-    output: z.object({
-      post: z.object({
-        id: z.string().uuid(),
-        content: z.string(),
-        userId: z.string().uuid(),
-      }),
-    }),
-    resolve: ({ input, ctx }) => {
-      const post = database.posts.find((_post) => _post.id === input.id);
-
-      if (!post) {
-        throw new TRPCError({
-          message: "Post not found",
-          code: "NOT_FOUND",
-        });
-      }
-      if (post.userId !== ctx.user.id) {
-        throw new TRPCError({
-          message: "Cannot edit post owned by other user",
-          code: "FORBIDDEN",
-        });
-      }
-
-      post.content = input.content;
-
-      return { post };
-    },
-  })
-  .query("deletePostById", {
-    meta: {
-      openapi: {
-        enabled: true,
-        method: "DELETE",
-        path: "/posts/{id}",
-        tags: ["posts"],
-        protect: true,
-        summary: "Delete a post",
-      },
-    },
-    input: z.object({
-      id: z.string().uuid(),
-    }),
-    output: z.null(),
-    resolve: ({ input, ctx }) => {
-      const post = database.posts.find((_post) => _post.id === input.id);
-
-      if (!post) {
-        throw new TRPCError({
-          message: "Post not found",
-          code: "NOT_FOUND",
-        });
-      }
-      if (post.userId !== ctx.user.id) {
-        throw new TRPCError({
-          message: "Cannot delete post owned by other user",
-          code: "FORBIDDEN",
-        });
-      }
-
-      database.posts = database.posts.filter((_post) => _post !== post);
-
-      return null;
-    },
-  });
-
-export const appRouter = createRouter().merge(authRouter).merge(usersRouter).merge(postsRouter).merge(postsProtectedRouter);
+/* prettier-ignore */
+export const appRouter = createRouter()
+  .merge(authRouter)
+  .merge(companyRouter)
+  .merge(companyProtectedRouter);
 
 export type AppRouter = typeof appRouter;
