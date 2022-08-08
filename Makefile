@@ -6,7 +6,7 @@ export
 bootstrap: system-check $(VENV) node_modules docker-images
 
 system-check:
-	./system-check.sh &>/dev/null
+	./scripts/system-check.sh &>/dev/null
 
 node_modules: package.json
 	npm install
