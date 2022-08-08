@@ -1,13 +1,29 @@
 import React from "react"
 
-const SentimentEmoji = ({sentiment}) => {
-  console.log(sentiment)
-  switch (sentiment) {
-    case "positive": return "🙂"
-    case "negative": return "🙁"
-    case "neutral": return "😐"
+export const App = () => {
+  return (
+    <div>
+      <h1>Company Stock</h1>
+      <CompanyList />
+    </div>
+  );
+};
+
+export const CompanyList = () => {
+  const { companies } = useCompanies();
+
+  if (companies.length === 0) {
+    return <div>Loading...</div>
   }
-}
+
+  return (
+    <div className="companies-list">
+      {companies.map((item, index) => {
+        return <CompanyCard key={index} {...item} />;
+      })}
+    </div>
+  );
+};
 
 export const CompanyCard = ({ company, price = null, news = [] }) => {
   return (
@@ -33,6 +49,8 @@ export const CompanyCard = ({ company, price = null, news = [] }) => {
   );
 };
 
+// --
+
 const useCompanies = () => {
   const [companies, setCompanies] = React.useState([]);
 
@@ -48,27 +66,10 @@ const useCompanies = () => {
 }
 
 
-export const CompanyList = () => {
-  const { companies } = useCompanies();
-
-  if (companies.length === 0) {
-    return <div>Loading...</div>
+const SentimentEmoji = ({sentiment}) => {
+  switch (sentiment) {
+    case "positive": return "🙂"
+    case "negative": return "🙁"
+    case "neutral": return "😐"
   }
-
-  return (
-    <div className="companies-list">
-      {companies.map((item, index) => {
-        return <CompanyCard key={index} {...item} />;
-      })}
-    </div>
-  );
-};
-
-export const App = () => {
-  return (
-    <div>
-      <h1>Company Stock</h1>
-      <CompanyList />
-    </div>
-  );
-};
+}
