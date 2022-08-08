@@ -1,12 +1,17 @@
-/* CREATE DATABASE company; */
+CREATE TABLE "public"."User" (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR NOT NULL,
+  email VARCHAR UNIQUE NOT NULL,
+  passcode VARCHAR(4) NOT NULL
+);
 
-CREATE TABLE companies (
-  id SERIAL,
+CREATE TABLE "public"."Company" (
+  id SERIAL PRIMARY KEY NOT NULL,
   tickerCode VARCHAR NOT NULL,
   name VARCHAR NOT NULL
 );
 
-INSERT INTO companies
+INSERT INTO "public"."Company"
   (tickerCode, name)
   VALUES
   ('GOOG', 'Google'),
@@ -16,4 +21,4 @@ INSERT INTO companies
   ('TEAM', 'Atlassian Corporation PLC'),
   ('DELL', 'Dell Technologies Inc');
 
-SELECT * FROM companies;
+SELECT * FROM "public"."Company";

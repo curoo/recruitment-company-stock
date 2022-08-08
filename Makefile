@@ -3,24 +3,27 @@
 include .env
 export
 
-bootstrap: system-check $(VENV) node_modules docker-images
+bootstrap: system-check docker-images
+
+dev: docker
+	npm install
+	# npm run watch &
+	docker-compose up --remove-orphans
+
+test:
+	npm test
 
 system-check:
 	./scripts/system-check.sh &>/dev/null
 
-node_modules: package.json
-	npm install
-	touch node_modules
+docker:
+	docker stats --no-stream > /dev/null 2>&1
 
-docker-images:
+docker-images: docker
 	docker-compose build
 
-run: node_modules
-	npm run watch &
-	docker-compose up
-
-clean:
+clean: docker
 	git clean -fdx
-	docker-compose down -v
+	docker-compose down --volumes
 
-.PHONY: bootstrap system-check docker-images run db test clean
+.PHONY: bootstrap test dev system-check docker docker-images clean

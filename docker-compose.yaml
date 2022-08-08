@@ -7,15 +7,6 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./packages/api/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - 5432:5432
-
-  website:
-    build: ./
-    env_file: .env
-    stop_grace_period: 1s
-    ports:
-      - '5000:5000'
-    volumes:
-      - './:/src'

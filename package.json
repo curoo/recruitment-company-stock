@@ -6,8 +6,5 @@
   ],
   "scripts": {
     "test": "npm run test --workspaces --if-present"
-  },
-  "devDependencies": {
-    "typescript": "^4.7.4"
   }
 }
