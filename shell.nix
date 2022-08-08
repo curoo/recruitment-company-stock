@@ -5,26 +5,10 @@ pkgs.mkShell rec {
 
   buildInputs = [
     pkgs.nodejs
-    pkgs.python39
-    pkgs.python39Packages.wheel
     pkgs.openssl
     pkgs.postgresql
   ];
 
-  VIRTUAL_ENV = builtins.toString ./.venv;
-
   # https://stackoverflow.com/a/70238851/644945
   DOCKER_DEFAULT_PLATFORM = "linux/amd64";
-
-  shellHook = ''
-    [ -d "${VIRTUAL_ENV}" ] || {
-      python -m venv ${VIRTUAL_ENV}
-      source ${VIRTUAL_ENV}/bin/activate
-      pip install -r requirements.txt
-    }
-  '';
-
-  postShellHook = ''
-    source ${VIRTUAL_ENV}/bin/activate
-  '';
 }

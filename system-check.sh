@@ -11,12 +11,10 @@ function bin_check() {
 echo "Checking for required binaries..."
 echo
 
-bin_check "python3"
 bin_check "npm"
 bin_check "docker"
 bin_check "docker-compose"
 bin_check "git"
-bin_check "make"
 
 echo
 echo "System check complete."
