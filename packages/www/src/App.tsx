@@ -55,7 +55,7 @@ const useCompanies = () => {
   const [companies, setCompanies] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(`${process.env.API_URL}/api/companies`)
+    fetch(`/api/companies`)
       .then((res) => res.json())
       .then(({ data }) => setCompanies(data.companies));
   }, []);

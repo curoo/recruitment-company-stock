@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
+import { env } from "./env";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import cors from "cors";
 import express from "express";
@@ -22,5 +22,6 @@ app.use("/", swaggerUi.serve);
 app.get("/", swaggerUi.setup(openApiDocument));
 
 app.listen(3000, () => {
-  console.log("Server started on http://localhost:3000");
+  const url = `http://localhost:${env.API_PORT}`;
+  console.log(`🚀 Server ready at ${url}`);
 });
