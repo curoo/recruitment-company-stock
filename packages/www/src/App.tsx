@@ -1,25 +1,23 @@
-import React from "react"
+import React from "react";
 
-export const App = () => {
-  return (
-    <div>
-      <h1>Company Stock</h1>
-      <CompanyList />
-    </div>
-  );
-};
+export const App: React.FC = () => (
+  <div>
+    <h1>Company Stock</h1>
+    <CompanyList />
+  </div>
+);
 
-export const CompanyList = () => {
+export const CompanyList: React.FC = () => {
   const { companies } = useCompanies();
 
   if (companies.length === 0) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="companies-list">
-      {companies.map((item, index) => {
-        return <CompanyCard key={index} {...item} />;
+      {companies.map((company, index) => {
+        return <CompanyCard key={index} company={company} />;
       })}
     </div>
   );
@@ -33,13 +31,15 @@ export const CompanyCard = ({ company, price = null, news = [] }) => {
       </div>
       <div className="card-body">
         <div className="card-title">
-          {company.ticker} {price && " - " + price}
+          {company.tickerCode} {price && " - " + price}
         </div>
         <div className="card-news">
           {news.map((item, index) => {
             return (
               <div key={index} className="card-news-item">
-                <p>{item.content} <SentimentEmoji sentiment={item.sentiment} /></p>
+                <p>
+                  {item.content} <SentimentEmoji sentiment={item.sentiment} />
+                </p>
               </div>
             );
           })}
@@ -56,20 +56,19 @@ const useCompanies = () => {
 
   React.useEffect(() => {
     fetch(`${process.env.API_URL}/api/companies`)
-      .then(res => res.json())
-      .then(data => setCompanies(data));
+      .then((res) => res.json())
+      .then(({ data }) => setCompanies(data.companies));
   }, []);
 
   return {
-    companies
-  }
-}
+    companies,
+  };
+};
 
-
-const SentimentEmoji = ({sentiment}) => {
-  switch (sentiment) {
-    case "positive": return "🙂"
-    case "negative": return "🙁"
-    case "neutral": return "😐"
-  }
-}
+const SentimentEmoji: React.FC<{ sentiment: string }> = ({ sentiment }) => (
+  <>
+    {sentiment === "positive" && "🙂"}
+    {sentiment === "negative" && "🙁"}
+    {sentiment === "neutral" && "😐"}
+  </>
+);

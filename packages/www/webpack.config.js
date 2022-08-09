@@ -1,33 +1,28 @@
+const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    mode: "development",
-
-    entry: ["./frontend/index.js"],
-
-    output: {
-        path: __dirname + "/static",
-        filename: "bundle.js",
-    },
-
-    plugins: [
-        new webpack.DefinePlugin({
-            "process.env.API_URL": JSON.stringify("http://127.0.0.1:5000"),
-        }),
+  mode: 'development',
+  entry: './src/index.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
-
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/env']
-                    }
-                }
-            },
-        ]
-    },
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env.API_URL": JSON.stringify("http://localhost:3000"),
+    }),
+  ],
 };

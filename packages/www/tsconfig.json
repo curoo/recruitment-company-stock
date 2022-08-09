@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "public",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "jsx": "react-jsx"
+  }
+}

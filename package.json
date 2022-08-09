@@ -2,10 +2,16 @@
   "name": "company-stock",
   "private": true,
   "workspaces": [
+    "packages/www",
     "packages/api"
   ],
   "scripts": {
-    "start": "npm run --workspaces --if-present start",
-    "test": "npm run --workspaces --if-present test"
+    "start:www": "npm run start --workspace www",
+    "start:api": "npm run start --workspace api",
+    "start": "npm-run-all --parallel start:*",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

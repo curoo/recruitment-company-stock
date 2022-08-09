@@ -1,36 +1,20 @@
 {
-  "name": "company-stock",
+  "name": "www",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch",
-    "start": "flask run"
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "babel-loader": "^8.2.4",
+    "@types/react": "^18.0.17",
+    "ts-loader": "^9.3.1",
     "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/env",
-      "@babel/react"
-    ],
-    "env": {
-      "start": {
-        "presets": [
-          "@babel/env",
-          "@babel/react"
-        ]
-      }
-    }
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.3"
   }
 }
