@@ -6,6 +6,7 @@
     "packages/api"
   ],
   "scripts": {
+    "prepare": "./scripts/system-check.sh",
     "start:www": "npm run start --workspace www",
     "start:api": "npm run start --workspace api",
     "start": "npm-run-all --parallel start:*",
