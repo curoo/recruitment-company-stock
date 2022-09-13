@@ -85,7 +85,7 @@ Negative words: disappointing, concerns, decline, drag, slump, feared
 
 Calculate each story's sentiment analysis and display it next to the story headline in the card.
 
-### Comments
+# Comments
 
 > __Brett__ (manager)
 >
