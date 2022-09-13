@@ -85,8 +85,35 @@ Negative words: disappointing, concerns, decline, drag, slump, feared
 
 Calculate each story's sentiment analysis and display it next to the story headline in the card.
 
-# What Now?
+### Comments
 
-- Ask any questions
-- Feel free to use Google or any other resource
-- Start pairing!
+> __Brett__ (manager)
+>
+> Would be great if we could also publish a storybook and expose the the api via swagger
+
+> __Barry__ (developer)
+>
+> I estimate 8hrs of work
+
+> __Brett__ (manager)
+>
+> Great 👍 please make this your next task then.
+
+> __Tony__ (customer)
+>
+> __@Brett__ Can we also add the ability for user to add companies to their watchlist?
+
+> __Brett__ (manager)
+>
+> __@Tony__ We can add that as a stretch goal, but I think we should focus on the core functionality first.
+
+> __Barry__ (developer)
+>
+> As discussed I need to hand this over.
+>
+> So far I managed to get the API working, have the database setup and the UI is looking good. The database is populated with the default set of companies.
+> API isn't actually hooked up to the database though.
+>
+> You can get started by running `npm start` and then visit `http://localhost:8080` for the web app, and `http://localhost:3000` for the api.
+>
+> I start work on the auth. I think all the endpoints should work, but haven't managed to integrate it with the UI.
