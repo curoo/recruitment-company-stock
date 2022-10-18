@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "test": "webpack --no-stats --progress && echo OK",
+    "test": "nc -z localhost 8080 && export REUSE_SERVER=true; npx --yes playwright test",
     "start": "webpack-dev-server"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.27.1",
     "@types/react": "^18.0.17",
     "dotenv": "^16.0.1",
     "ts-loader": "^9.3.1",

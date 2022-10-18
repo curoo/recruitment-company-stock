@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { User, Company } from "./database";
+import { DbUser, User, Company } from "./types";
 import { appRouter, Context } from "./router";
 
 const mock = {
-  user: (params: Partial<User> = {}): User => ({
+  user: (params: Partial<User> = {}): DbUser => ({
     id: uuid(),
     email: "jd@blad.com",
     passcode: "1234",
