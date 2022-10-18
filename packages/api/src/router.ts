@@ -5,8 +5,8 @@ import jwt from "jsonwebtoken";
 import { OpenApiMeta } from "trpc-openapi";
 import { v4 as uuid } from "uuid";
 import { z } from "zod";
-
-import { User, Company, database } from "./database";
+import { database } from "./database";
+import { Company, companySchema, User, userSchema } from "./types";
 
 const jwtSecret = uuid();
 
@@ -73,11 +73,7 @@ const authRouter = createRouter()
       name: z.string().min(3),
     }),
     output: z.object({
-      user: z.object({
-        id: z.string().uuid(),
-        email: z.string().email(),
-        name: z.string().min(3),
-      }),
+      user: userSchema,
     }),
     resolve: ({ input }) => {
       let user = database.users.find((_user) => _user.email === input.email);
@@ -152,13 +148,7 @@ const companyRouter = createRouter().query("getCompanies", {
   },
   input: z.object({}),
   output: z.object({
-    companies: z.array(
-      z.object({
-        id: z.number(),
-        tickerCode: z.string(),
-        name: z.string(),
-      })
-    ),
+    companies: z.array(companySchema),
   }),
   resolve: () => {
     return { companies: database.companies };
@@ -181,11 +171,7 @@ const companyProtectedRouter = createProtectedRouter().mutation("createCompany",
     name: z.string().min(1).max(50),
   }),
   output: z.object({
-    company: z.object({
-      id: z.number(),
-      tickerCode: z.string(),
-      name: z.string(),
-    }),
+    company: companySchema,
   }),
   resolve: ({ input, ctx }) => {
     const company: Company = {

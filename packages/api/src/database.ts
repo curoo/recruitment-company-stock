@@ -1,17 +1,6 @@
-export type User = {
-  id: string;
-  email: string;
-  passcode: string;
-  name: string;
-};
+import { Company, DbUser } from "./types";
 
-export type Company = {
-  id: number;
-  tickerCode: string;
-  name: string;
-};
-
-export const database: { users: User[]; companies: Company[] } = {
+export const database: { users: DbUser[]; companies: Company[] } = {
   users: [
     {
       id: "3dcb4a1f-0c91-42c5-834f-26d227c532e2",
