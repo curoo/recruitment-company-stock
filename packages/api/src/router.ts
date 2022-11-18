@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { OpenApiMeta } from "trpc-openapi";
 import { v4 as uuid } from "uuid";
 import { z } from "zod";
-import { database } from "./database";
+import { Database, database } from "./database";
 import { Company, companySchema, User, userSchema } from "./types";
 
 const jwtSecret = uuid();
@@ -13,6 +13,7 @@ const jwtSecret = uuid();
 export type Context = {
   user: User | null;
   requestId: string;
+  database: Database
 };
 
 export const createContext = async ({
@@ -37,7 +38,7 @@ CreateExpressContextOptions): Promise<Context> => {
     console.error(cause);
   }
 
-  return { user, requestId };
+  return { user, requestId, database };
 };
 
 const createRouter = () => {
@@ -150,8 +151,8 @@ const companyRouter = createRouter().query("getCompanies", {
   output: z.object({
     companies: z.array(companySchema),
   }),
-  resolve: () => {
-    return { companies: database.companies };
+  resolve: ({ctx}) => {
+    return { companies: ctx.database.companies };
   },
 });
 

@@ -1,6 +1,8 @@
 import { Company, DbUser } from "./types";
 
-export const database: { users: DbUser[]; companies: Company[] } = {
+export type Database = { users: DbUser[]; companies: Company[] }
+
+export const database: Database = {
   users: [
     {
       id: "3dcb4a1f-0c91-42c5-834f-26d227c532e2",
@@ -17,7 +19,7 @@ export const database: { users: DbUser[]; companies: Company[] } = {
     },
     {
       id: 2,
-      tickerCode: "GOOGL",
+      tickerCode: "GOOG",
       name: "Google",
     },
   ],
